@@ -136,6 +136,8 @@ We can divide this function into 3 parts:
 
 All the other functions on this file follows the same kind of structure, with different checks depending on the operation we want to do. For example, for deleting celebrities, we must check it exists, on contrary to this first function.
 
+Also, all the functions on the `movies.py` file follow the same logic and routine.
+
 ## `checking.py`
 On an application such as this, where we must make sure some requirements are fullfiled for our code to execute properly (righ parameters, etc.) it is a very good idea to create a dedicated checking module, since we will be using it on a lot of different implementations.
 
@@ -144,3 +146,22 @@ For example, on the function below, we query the database to check whether a par
 ![](images/check.png)
 
 ## `mongoConnection.py`
+We wouldn't be able to do anything with this api if we couldn't connect to the database.
+
+Since we will be using mongo, we set up a mongoClient and a variable for our database.
+
+![](images/mongo.png)
+
+Our functions on this file perform the basic [`CRUD`](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations to the collections on our database. 
+
+Notably to mention the db parameter is set with a default value of our db database to make this function pure (non dependant of external values). This way we can use this function somewhere else with another database if ever needed.
+
+Plus, we also make sure to create the database object here so we have a single mongo client running on the API. If we were to create multiple clients without closing them we could have performance problems with the api.
+
+We chose to convert the cursos into lists before returning them. It is posible within this exercise since we are not dealing with massive quantities of data. If we had a huge database, it would be essential to implement some sort of [pagination](https://en.wikipedia.org/wiki/Pagination).
+
+## Flow of imports
+On the following diagram you can see the flow of the imports on this code and how the different files relate to each other.
+
+![](images/import_flow.png
+)
