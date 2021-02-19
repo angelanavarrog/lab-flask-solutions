@@ -3,7 +3,7 @@ from pymongo import MongoClient
 client = MongoClient()
 db = client.hollywoodapi
 
-def read_coll(collection,query,client=client):
+def read_coll(collection,query,db=db):
     res = db[collection].find(query)
     return list(res)
 
