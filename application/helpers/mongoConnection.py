@@ -1,11 +1,16 @@
 from pymongo import MongoClient
 
 client = MongoClient()
-db = client.hollywoodapi
+db = client.Whatsapp.Users
 
-def read_coll(collection,query,db=db):
-    res = db[collection].find(query)
+def read_coll(collection,query,db=db,project=None):
+    res = db[collection].find(query,project)
     return list(res)
+
+def read(query, project=None):
+
+    data = db.find(query, project)
+    return list(data)
 
 def write_coll(collection, obj,client=client):
     res = db[collection].insert_one(obj)

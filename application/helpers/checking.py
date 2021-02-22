@@ -19,3 +19,13 @@ def check_exists(query,collection):
         return True
     else:
         return False
+
+def check_groups(args,field,mandatory): 
+    '''
+    The function checks if the queries for a selected field are included into the Database or not
+    Takes: the querie(args), selected field and the list of possible queries
+    Returns: True if everything is correct, otherwise returns a False
+    '''
+    if args[field] not in mandatory:
+        return False
+    return True
